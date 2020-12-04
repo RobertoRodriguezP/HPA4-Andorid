@@ -17,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity();
+                System.out.println("Button Clicked");
+
+                Intent actividadIntent = new Intent(getApplicationContext(), actividad.class);
+                startActivity(actividadIntent);
             }
         });
     }
-    public void openNewActivity(){
-        Intent intent = new Intent(this, Barometer.class);
-        startActivity(intent);
-    }
+
     }
