@@ -1,77 +1,61 @@
 package com.example.proyectodesensores;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
-import android.media.MediaPlayer;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class Accelerometer extends AppCompatActivity {
-    SensorManager sensorm;
-    Sensor sensor;
-    SensorEventListener sensorEvent;
-    int whip=0;
+public class Accelerometer extends AppCompatActivity implements SensorEventListener {
+
+    private Button button2;
+    private TextView textView;
+    private SensorManager sensorManager;
+    private Sensor sensor;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acelerometro);
-        sensorm=(SensorManager)getSystemService(SENSOR_SERVICE);
-        sensor=sensorm.getDefaultSensor(sensor.TYPE_ACCELEROMETER);
-        if (sensor==null) {
-            finish();
-        }
-        sensorEvent=new SensorEventListener() {
+        button2 = findViewById(R.id.button2);
+        textView = findViewById(R.id.text_accelerometer);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(Accelerometer.this, sensor, sensorManager.SENSOR_DELAY_NORMAL);
+
+
+
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
-                float x=sensorEvent.values[0];
-                System.out.println("valor giro " + x);
-                if((x<-5) && (whip==0)) {
-                    whip++;
-                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                }else if(x>5 && whip==1){
-
-                    whip++;
-                    getWindow().getDecorView().setBackgroundColor(Color.RED);
-                }
-                if(whip==2){
-                    sonido();
-                    whip=0;
-                }
+            public void onClick(View view) {
+                Intent intent = new Intent(Accelerometer.this, MainActivity.class);
+                startActivity(intent);
             }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-
-            }
-
-        };
-        start();
+        });
     }
-    private void sonido(){
-        MediaPlayer mediaplayer = MediaPlayer.create(this,R.raw.latigo);
-        mediaplayer.start();
-    }
-    private void start(){
-        sensorm.registerListener(sensorEvent,sensor,SensorManager.SENSOR_DELAY_NORMAL);
-    }
-    private void stop(){
-        sensorm.unregisterListener(sensorEvent);
+
+    public void onSensorChanged(SensorEvent event) {
+        // Original: public void onSensorChanged(SensorEvent sensorEvent) {
+        // here the event.values will provide you with the data
+        // index 0 for x axis, 1 for y axis and 2 for z axis
+
+
+        textView.setText("X: "+event.values[0]+"\nY: "+event.values[1]+"\nZ: "+event.values[2]);
+
     }
 
     @Override
-    protected void onPause() {
-        stop();
-        super.onPause();
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 
-    @Override
-    protected void onResume() {
-        start();
-        super.onResume();
-    }
 
 
 }

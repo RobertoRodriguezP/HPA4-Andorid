@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#efedee"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="438dp"
-        android:layout_height="679dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/acel" />
+    android:id="@+id/Sensor"
+    tools:context="com.example.proyectodesensores.Termometer">
 
     <Button
         android:id="@+id/button2"
@@ -29,32 +23,28 @@
         app:layout_constraintVertical_bias="0.878" />
 
     <TextView
-        android:id="@+id/txt2"
+        android:id="@+id/Cosa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Posicion del Equipo:"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:text="0.0°C"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.303" />
+        tools:textStyle="bold" />
 
     <TextView
-        android:id="@+id/text_accelerometer"
+        android:id="@+id/cosa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.0"
-        android:textSize="36sp"
-        android:textStyle="bold"
+        android:text="Temperatura Ambiente es:"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintVertical_bias="0.41"
+        tools:textStyle="bold" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
